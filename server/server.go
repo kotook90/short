@@ -18,19 +18,9 @@ type Config struct {
 
 func StartServer(router *mux.Router) (*http.Server, error) {
 
-	cfg := Config{}
+	
 
-	path := "/short/server/configuration.json"
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-
-	err = json.NewDecoder(file).Decode(&cfg)
-	if err != nil {
-		return nil, err
-
-	}
+	
 
 	srv := &http.Server{
 		Addr:         ":2000",
@@ -39,11 +29,7 @@ func StartServer(router *mux.Router) (*http.Server, error) {
 		Handler:      router,
 	}
 
-	err = file.Close()
-	if err != nil {
-		log.Println("server configuration file not closed")
-		return nil, err
-	}
+	
 
 	return srv, nil
 }
