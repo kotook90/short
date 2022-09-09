@@ -17,7 +17,7 @@ func StartDB() (*pgxpool.Pool, error) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
 	defer cancel()
-	url := "postgres://kurswork:27121990@127.0.0.1/kurswork?sslmode=disable"
+	url := "DATABASE_URL"
 	//url := os.Getenv("PG_DSN")
 	cfg, err := pgxpool.ParseConfig(url)
 	if err != nil {
