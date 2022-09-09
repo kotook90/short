@@ -13,7 +13,7 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
-const Pattern string = os.Getenv("HOST")
+var Pattern string = os.Getenv("HOST")
 
 type HTTPHandler struct {
 	Pool *pgxpool.Pool
