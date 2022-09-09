@@ -41,7 +41,7 @@ func main() {
 	}
 	customHandler := rout.HTTPHandler{Pool: pool}
 
-	router.HandleFunc("home", rout.HomeGet).Methods("GET")
+	router.HandleFunc("/home", rout.HomeGet).Methods("GET")
 	router.HandleFunc("/home/result", customHandler.ResultPost).Methods("POST")
 	router.HandleFunc("/home/errorpage", rout.ErrorPage).Methods("GET")
 	router.HandleFunc("/home/allresults", customHandler.AllResults).Methods("GET")
