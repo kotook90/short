@@ -6,7 +6,8 @@ import (
 	"net/http"
 	"os"
 	"time"
-
+"github.com/mingrammer/go-todo-rest-api-example/app"
+	"github.com/mingrammer/go-todo-rest-api-example/config"
 	"github.com/gorilla/mux"
 )
 
@@ -19,8 +20,18 @@ type Config struct {
 func StartServer(router *mux.Router) (*http.Server, error) {
 
 	
+		configurate := config.GetConfig()
 
-	port:=os.Getenv("$PORT")
+	ap := &app.App{}
+	ap.Initialize(configurate)
+	port:= os.Getenv("PORT")
+	if err != nil {
+		port = "3000"
+	}
+
+	ap.Run(":"+port)
+	
+	
 
 	srv := &http.Server{
 		Addr:         port,
@@ -28,6 +39,10 @@ func StartServer(router *mux.Router) (*http.Server, error) {
 		WriteTimeout: 7 * time.Second,
 		Handler:      router,
 	}
+	
+	
+	
+
 
 	
 
