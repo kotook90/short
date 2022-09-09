@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 	"time"
-
+        "os"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
@@ -17,7 +17,7 @@ func StartDB() (*pgxpool.Pool, error) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
 	defer cancel()
-	url := "DATABASE_URL"
+	url := os.Getenv("DATABASE_URL")
 	//url := os.Getenv("PG_DSN")
 	cfg, err := pgxpool.ParseConfig(url)
 	if err != nil {
