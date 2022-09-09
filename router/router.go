@@ -13,7 +13,7 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
-const Pattern string = "https://127.1.1.0/"
+const Pattern string = "oipuy.herokuapp.com/"
 
 type HTTPHandler struct {
 	Pool *pgxpool.Pool
