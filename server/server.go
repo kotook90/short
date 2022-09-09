@@ -34,7 +34,7 @@ func StartServer(router *mux.Router) (*http.Server, error) {
 
 	srv := &http.Server{
 		Addr:         ":2000",
-		ReadTimeout:  7t * time.Second,
+		ReadTimeout:  7 * time.Second,
 		WriteTimeout: 7 * time.Second,
 		Handler:      router,
 	}
