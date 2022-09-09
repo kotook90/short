@@ -25,9 +25,7 @@ func StartServer(router *mux.Router) (*http.Server, error) {
 	ap := &app.App{}
 	ap.Initialize(configurate)
 	port:= os.Getenv("PORT")
-	if err != nil {
-		port = "3000"
-	}
+	
 
 	ap.Run(":"+port)
 	
