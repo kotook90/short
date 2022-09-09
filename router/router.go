@@ -8,12 +8,12 @@ import (
 	"short/database"
 	"short/models"
 	"time"
-        "os"
+        
 	"github.com/gorilla/mux"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
-var Pattern string = os.Getenv("HOST")
+Pattern:= os.Getenv("host")
 
 type HTTPHandler struct {
 	Pool *pgxpool.Pool
