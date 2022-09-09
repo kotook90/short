@@ -13,7 +13,7 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
-Pattern:= os.Getenv("HOST")
+var Pattern const= "https://oipuy.herokuapp.com/"
 
 type HTTPHandler struct {
 	Pool *pgxpool.Pool
