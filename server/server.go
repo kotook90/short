@@ -2,7 +2,7 @@ package server
 
 import (
 	
-	"os"
+	
 	"net/http"
 	"time"
 	"github.com/gorilla/mux"
@@ -16,18 +16,8 @@ type Config struct {
 
 func StartServer(router *mux.Router) (*http.Server, error) {
 
-	 port := os.Getenv("PORT")
-  
-
-
-
-
-
-
-
-
 	srv := &http.Server{
-		Addr:         port,
+		Addr:         ":2000",
 		ReadTimeout:  7 * time.Second,
 		WriteTimeout: 7 * time.Second,
 		Handler:      router,
