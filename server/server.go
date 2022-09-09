@@ -16,10 +16,8 @@ type Config struct {
 
 func StartServer(router *mux.Router) (*http.Server, error) {
 
-	 port, ok := os.LookupEnv("PORT")
-  if ok == false {
-        port = "3000"
-    }
+	 port := os.Getenv("PORT")
+  
 
 
 
