@@ -16,11 +16,11 @@ type Config struct {
 
 func StartServer(router *mux.Router) (*http.Server, error) {
 
-	
+	 port, _ := os.LookupEnv("PORT")
 
 
 	srv := &http.Server{
-		Addr:         ":",
+		Addr:         port,
 		ReadTimeout:  7 * time.Second,
 		WriteTimeout: 7 * time.Second,
 		Handler:      router,
