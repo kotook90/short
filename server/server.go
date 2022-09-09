@@ -33,9 +33,9 @@ func StartServer(router *mux.Router) (*http.Server, error) {
 	}
 
 	srv := &http.Server{
-		Addr:         cfg.Port,
-		ReadTimeout:  cfg.ReadTimeout * time.Second,
-		WriteTimeout: cfg.WriteTimeout * time.Second,
+		Addr:         ":2000",
+		ReadTimeout:  7t * time.Second,
+		WriteTimeout: 7 * time.Second,
 		Handler:      router,
 	}
 
