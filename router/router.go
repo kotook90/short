@@ -8,12 +8,12 @@ import (
 	"short/database"
 	"short/models"
 	"time"
-
+        "os"
 	"github.com/gorilla/mux"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
-const Pattern string = "http://oipuy.herokuapp.com"
+const Pattern string = os.Getenv("HOST")
 
 type HTTPHandler struct {
 	Pool *pgxpool.Pool
