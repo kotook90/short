@@ -20,7 +20,7 @@ func StartServer(router *mux.Router) (*http.Server, error) {
 
 	cfg := Config{}
 
-	path := "/home/anton/projects/golang-4/short/server/configuration.json"
+	path := "/short/server/configuration.json"
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
