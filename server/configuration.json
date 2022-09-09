@@ -1,0 +1,6 @@
+{
+  "port": ":8000",
+  "readTimeout": 7,
+  "writeTimeout": 7
+
+}
