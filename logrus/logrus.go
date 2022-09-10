@@ -12,7 +12,7 @@ func LogInit() (*os.File, *logger.Entry) {
 	standardFields := logger.Fields{}
 	logFile, err := os.OpenFile("logrus/error.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
-		logger.Fatalf("Error opening file: %v", err)
+		logger.Warnf("Error opening file: %v", err)
 	}
 
 	wg := sync.WaitGroup{}
