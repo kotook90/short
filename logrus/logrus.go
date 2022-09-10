@@ -7,7 +7,7 @@ import (
 )
 
 
-func logInit() (*os.File, *logger.Entry) {
+func LogInit() (*os.File, *logger.Entry) {
 	logger.SetFormatter(&logger.JSONFormatter{})
 	standardFields := logger.Fields{}
 	logFile, err := os.OpenFile("error.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
