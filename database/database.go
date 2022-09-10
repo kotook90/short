@@ -46,7 +46,7 @@ func StartDB() (*pgxpool.Pool, error) {
 	
 	err = logFile.Close()
 	if err != nil {
-		logger.Errorf("Файл логов не закрылся %s", err)
+		hlog.Errorf("Файл логов не закрылся %s", err)
 	}
 	
 	return dbpool, nil
