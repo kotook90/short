@@ -18,7 +18,7 @@ import (
 
 func main() {
 
-	logFile,hlog:=logrus.logInit()
+	logFile,hlog:=logrus.LogInit()
 	
 	
 	
