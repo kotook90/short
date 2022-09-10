@@ -1,0 +1,106 @@
+openapi: '3.0.2'
+info:
+  title: myProject
+  version: '1.0'
+servers:
+  - url: https://oipuy.herokuapp.com/
+components:
+  schemas:
+    form:
+      type: object
+      properties:
+        userurl:
+          type: string
+        newurl:
+          type: string
+        id:
+          type: integer
+    statistic:
+      type: object
+      properties:
+        time:
+          type: string
+        newurl_form:
+          type: string
+        ip:
+          type: integer
+        id:
+          type: integer
+          
+      
+paths:
+  /:
+     get:
+      operationId: startPage
+      description: startPage
+      responses:
+        '200':
+          description: successful operation
+        '500':
+          description: internal server error
+  /home/result:
+    post:
+      operationId: make
+      description: Make short Url and statistic Url
+      requestBody:
+        description: description
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/form'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                $ref: "#/components/schemas/form"
+        '400':
+          description: error(duplicate url, not valid format url and other error)
+        '500':
+          description: internal server error
+  /home/allresults:
+    get:
+      description: Show all result making short Urls
+      operationId: allResult
+      responses:
+        '200':
+          description: successful operation
+          content:
+             text/plain:
+              schema:
+                $ref: "#/components/schemas/form"
+        '500':
+          description: internal server error
+  /home/errorpage:
+    get:
+      description: Redirect to error page
+      operationId: errorPage
+      responses:
+        '200':
+           description: successful operation
+        '500':
+          description: internal server error
+  /s/{name}
+    get:
+      description: search in database short url and redirect user to long url
+      operationId: redirect
+      responses:
+        '200':
+           description: successful operation
+        '500':
+          description: internal server error
+  /stat/{name}        
+    get:
+      description: show statictic redirect urls
+      operationId: statictic
+      content:
+             text/plain:
+              schema:
+                $ref: "#/components/schemas/statistic"
+      responses:
+        '200':
+           description: successful operation
+        '500':
+          description: internal server error
