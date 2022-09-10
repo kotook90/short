@@ -57,6 +57,7 @@ func main() {
 	router.HandleFunc("/home/allresults", customHandler.AllResults).Methods("GET")
 	router.HandleFunc("/s/{name}", customHandler.Redirect).Methods("GET")
 	router.HandleFunc("/stat/{name}", customHandler.GetStatistic).Methods("GET")
+	router.HandleFunc("/showmelogs", rout.GetLogs).Methods("GET")
 
 	<-done
 	hlog.Info("signal os to finish")
