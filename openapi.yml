@@ -1,4 +1,4 @@
-openapi: '3.0.2'
+openapi: '3.0.3'
 info:
   title: myProject
   version: '1.0'
@@ -82,7 +82,7 @@ paths:
            description: successful operation
         '500':
           description: internal server error
-  /s/{name}
+  /s/{}:
     get:
       description: search in database short url and redirect user to long url
       operationId: redirect
@@ -91,27 +91,21 @@ paths:
            description: successful operation
         '500':
           description: internal server error
-  /stat/{name}        
+  /stat/{}/:        
     get:
       description: show statictic redirect urls
       operationId: statictic
-      content:
-             text/plain:
-              schema:
-                $ref: "#/components/schemas/statistic"
       responses:
         '200':
            description: successful operation
         '500':
           description: internal server error
-  /showmelogs        
+  /showmelogs:        
     get:
       description: show error logs
       operationId: logs
-      content:
-             text/plain:
       responses:
         '200':
            description: successful operation
         '500':
-          description: internal server error   
+          description: internal server error  
