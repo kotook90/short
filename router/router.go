@@ -55,7 +55,7 @@ func ErrorPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	return
+	
 }
 
 func (h HTTPHandler) ErrorPageDuplicateData(w http.ResponseWriter, r *http.Request) {
