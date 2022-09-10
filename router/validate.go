@@ -11,13 +11,13 @@ import (
 func ValidateData(userURL string, newURL string) (string, error) {
 
 	val1 := govalidator.IsAlphanumeric(newURL)
-	if val1 == false {
+	if !val1 {
 		log.Println("newurl is not url")
 		return "", fmt.Errorf("newurl is not url")
 	}
 
 	val2 := govalidator.IsURL(userURL)
-	if val2 == false {
+	if !val2  {
 		log.Println("userurl is not url")
 		return "", fmt.Errorf("userurl is not url")
 	}
