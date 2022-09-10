@@ -69,7 +69,7 @@ func main() {
 	} else {
 		log.Print("DB exited properly")
 	}
-		err := logFile.Close()
+		err = logFile.Close()
 	if err != nil {
 		logger.Errorf("Файл логов не закрылся %s", err)
 	}
