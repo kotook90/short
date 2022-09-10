@@ -11,12 +11,16 @@ import (
 	"short/server"
 	"syscall"
 	"time"
-
+        "short/logrus"
 	"github.com/gorilla/mux"
 )
 
 func main() {
 
+	logFile,hlog:=logrus.logInit()
+	
+	
+	
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 	router := mux.NewRouter()
@@ -64,5 +68,9 @@ func main() {
 		log.Printf("DB graceful shutdown failed: %s", err)
 	} else {
 		log.Print("DB exited properly")
+	}
+		err := logFile.Close()
+	if err != nil {
+		logger.Errorf("Файл логов не закрылся %s", err)
 	}
 }
