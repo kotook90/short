@@ -10,7 +10,7 @@ import (
 func LogInit() (*os.File, *logger.Entry) {
 	logger.SetFormatter(&logger.JSONFormatter{})
 	standardFields := logger.Fields{}
-	logFile, err := os.OpenFile("error.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	logFile, err := os.OpenFile("logrus/error.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		logger.Fatalf("Error opening file: %v", err)
 	}
