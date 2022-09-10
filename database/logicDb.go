@@ -74,7 +74,7 @@ from statistic
 where newurl_form like $1
 order by newurl_form asc;
 `
-	pattern := "http://127.1.1.0:2000/s/" + name
+	pattern := "https://oipuy.herokuapp.com/s/" + name
 	rows, err := dbpool.Query(ctx, sql, pattern)
 	if err != nil {
 		return nil, fmt.Errorf("failed to query data: %w", err)
@@ -98,7 +98,7 @@ order by newurl_form asc;
 func Search(ctx context.Context, pool *pgxpool.Pool, name string) (models.Form, error) {
 	const sql = `
 select userurl, newurl from form where newurl like $1 order by userurl;`
-	pattern := "http://127.1.1.0:2000/s/" + name
+	pattern := "https://oipuy.herokuapp.com/s/" + name
 
 	rows, err := pool.Query(ctx, sql, pattern)
 	if err != nil {
