@@ -7,6 +7,7 @@ import (
 	"time"
         "os"
 	"github.com/jackc/pgx/v4/pgxpool"
+	"short/logrus"
 )
 
 type HTTPHandler struct {
@@ -14,13 +15,14 @@ type HTTPHandler struct {
 }
 
 func StartDB() (*pgxpool.Pool, error) {
-
+	
+	logFile, hlog := logrus.LogInit()
 	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
 	defer cancel()
 	url := os.Getenv("DATABASE_URL")
-	//url := os.Getenv("PG_DSN")
 	cfg, err := pgxpool.ParseConfig(url)
 	if err != nil {
+		hlog.Warnf("configuration pgxpool not valid (func StartDB, package database), %s",err)
 		return nil, err
 	}
 
@@ -41,6 +43,12 @@ func StartDB() (*pgxpool.Pool, error) {
 	}
 
 	log.Print("db start")
+	
+	err = logFile.Close()
+	if err != nil {
+		logger.Errorf("Файл логов не закрылся %s", err)
+	}
+	
 	return dbpool, nil
 }
 
