@@ -28,22 +28,27 @@ func main() {
 
 	srv, err := server.StartServer(router)
 	if err != nil {
+		hlog.Fatalf("server not started %s", err)
 		log.Panic(err)
 	}
+	hlog.Info("server started")
 
 	go func() {
 		err = srv.ListenAndServe()
 		if err != nil && err != http.ErrServerClosed {
+			hlog.Panic("listen error: %s\n", err)
 			log.Panicf("listen error: %s\n", err)
 		}
-
+        hlog.Info("listen connection")
 	}()
 	log.Print("server started")
 
 	pool, err := database.StartDB()
 	if err != nil {
+		hlog.Fatalf("database not started %s",err)
 		log.Println(err)
 	}
+	hlog.Info("database started")
 	customHandler := rout.HTTPHandler{Pool: pool}
 
 	router.HandleFunc("/", rout.HomeGet).Methods("GET")
@@ -54,20 +59,25 @@ func main() {
 	router.HandleFunc("/stat/{name}", customHandler.GetStatistic).Methods("GET")
 
 	<-done
+	hlog.Info("signal os to finish")
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
 
 	err = srv.Shutdown(ctx)
 	if err != nil {
+		hlog.Warnf("server graceful shutdown failed: %s", err)
 		log.Printf("server graceful shutdown failed: %s", err)
 	} else {
+		hlog.Info("server exited properly")
 		log.Print("server exited properly")
 	}
 
 	err = database.StopDB(ctx, pool)
 	if err != nil {
+		hlog.Warnf("DB graceful shutdown failed: %s", err)
 		log.Printf("DB graceful shutdown failed: %s", err)
 	} else {
+		hlog.Info("DB exited properly")
 		log.Print("DB exited properly")
 	}
 		err = logFile.Close()
