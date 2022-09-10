@@ -210,3 +210,38 @@ func (h HTTPHandler) GetStatistic(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+func GetLogs(w http.ResponseWriter, r *http.Request) {
+
+	f, err := os.Open("logrus/error.log")
+	if err != nil {
+		log.Println(err)
+	}
+
+	_, err = io.WriteString(w, `<!DOCTYPE html><html><body>`)
+	if err != nil {
+		log.Println(err)
+	}
+
+	s := bufio.NewScanner(f)
+	for s.Scan() {
+		_, err = io.WriteString(w, html.EscapeString(s.Text())+`<br/>`)
+		if err != nil {
+			log.Println(err)
+		}
+	}
+
+	if err = s.Err(); err != nil {
+		if err != nil {
+			log.Println(err)
+		}
+	}
+
+	_, err = io.WriteString(w, `</body></html>`)
+	if err != nil {
+		log.Println(err)
+	}
+	err = f.Close()
+	if err != nil {
+		log.Println(err)
+	}
+}
