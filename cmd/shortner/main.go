@@ -13,6 +13,7 @@ import (
 	"time"
         "short/logrus"
 	"github.com/gorilla/mux"
+	logger "github.com/sirupsen/logrus"
 )
 
 func main() {
