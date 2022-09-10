@@ -220,12 +220,17 @@ func GetLogs(w http.ResponseWriter, r *http.Request) {
 	_, err = io.WriteString(w, `<!DOCTYPE html><html><body>`)
 	if err != nil {
 		log.Println(err)
+			w.WriteHeader(http.StatusBadRequest)
+		log.Println(err)
+		return
 	}
 
 	s := bufio.NewScanner(f)
 	for s.Scan() {
 		_, err = io.WriteString(w, html.EscapeString(s.Text())+`<br/>`)
 		if err != nil {
+				w.WriteHeader(http.StatusInternalServerError)
+				w.WriteHeader(http.StatusInternalServerError)
 			log.Println(err)
 		}
 	}
@@ -238,6 +243,7 @@ func GetLogs(w http.ResponseWriter, r *http.Request) {
 
 	_, err = io.WriteString(w, `</body></html>`)
 	if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
 		log.Println(err)
 	}
 	err = f.Close()
