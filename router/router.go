@@ -82,6 +82,7 @@ func (h HTTPHandler) ResultPost(w http.ResponseWriter, r *http.Request) {
 	newUserURL, err := ValidateData(userURL, newURL)
 	if err != nil {
 		ErrorPage(w, r)
+		w.WriteHeader(http.StatusBadRequest)
 	}
 
 	mf := &models.Form{UserURL: newUserURL,
