@@ -104,3 +104,14 @@ paths:
            description: successful operation
         '500':
           description: internal server error
+  /showmelogs        
+    get:
+      description: show error logs
+      operationId: logs
+      content:
+             text/plain:
+      responses:
+        '200':
+           description: successful operation
+        '500':
+          description: internal server error   
