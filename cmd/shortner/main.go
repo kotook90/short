@@ -36,7 +36,7 @@ func main() {
 	go func() {
 		err = srv.ListenAndServe()
 		if err != nil && err != http.ErrServerClosed {
-			hlog.Panic("listen error: %s\n", err)
+			hlog.Panicf("listen error: %s\n", err)
 			log.Panicf("listen error: %s\n", err)
 		}
         hlog.Info("listen connection")
