@@ -32,10 +32,6 @@ func ValidateData(userURL string, newURL string) (string, error) {
 		return newUserURL, nil
 
 	}
-	if strings.HasPrefix(userURL, "http") {
-		newUserURL := strings.Replace(userURL, "http", "https", +1)
-		return newUserURL, nil
-	}
 	
 if strings.HasPrefix(userURL, "") {
 		newUserURL := strings.Replace(userURL, "", "https://", +1)
